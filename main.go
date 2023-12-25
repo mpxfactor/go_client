@@ -1,9 +1,9 @@
 package main
 
-import (
-    "fmt"
-)
+import "mpxfactor.com/client-test/api"
 
-func main(){
-    fmt.Println("Testing")
+func main() {
+	rate, err := api.GetRate("BTC")
+
+	print(rate, err)
 }
