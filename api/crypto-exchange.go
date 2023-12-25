@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strconv"
 	"strings"
 
 	"mpxfactor.com/client-test/datatypes"
@@ -33,6 +34,8 @@ func GetRate(currency string) (*datatypes.Rate, error) {
 		return nil, fmt.Errorf("Status code received: %v", res.StatusCode)
 	}
 
-	rate := datatypes.Rate{Currency: currency, Price: float64(response.Bid)}
+	currencyPrice, _ := strconv.ParseFloat(response.Last, 2)
+	// rate := datatypes.Rate{Currency: currency, Price: float64(response.Bid)}
+	rate := datatypes.Rate{Currency: currency, Price: currencyPrice}
 	return &rate, nil
 }
