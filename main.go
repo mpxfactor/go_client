@@ -14,10 +14,10 @@ func main() {
 	for _, currency := range currencyArr {
 		waitgroup.Add(1)
 
-		go func() {
-			getCurrencyData(currency)
+		go func(currencyCode string) {
+			getCurrencyData(currencyCode)
 			waitgroup.Done()
-		}()
+		}(currency)
 	}
 	waitgroup.Wait()
 }
